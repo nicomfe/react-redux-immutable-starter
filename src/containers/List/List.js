@@ -1,26 +1,20 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import * as ListActions from '../../actions/list'
 import ListLoader from '../../components/ListLoader/ListLoader'
 
-const propTypes = {
-  getList: PropTypes.func.isRequired,
-  list: PropTypes.array.isRequired,
-  quantity: PropTypes.number,
-  isFetching: PropTypes.bool,
-}
-
-
-class ListContainer extends Component {
+class ListContainer extends React.Component {
   componentWillMount() {
-    this.props.getList(100)
+    const { getList } = this.props
+    getList(100)
   }
 
   render() {
     const { isFetching, quantity, list } = this.props
-
+    if (!list) return null
     return (
       <ul className="list-group" style={{ textAlign: 'center' }}>
         {isFetching &&
@@ -30,7 +24,9 @@ class ListContainer extends Component {
         }
 
         {list.map(item =>
-          <li key={item.id} className="list-group-item">{item.firstName} {item.lastName}</li>
+          <li key={item.get('id')} className="list-group-item">
+            {item.get('firstName')} {item.get('lastName')}
+          </li>
         )}
       </ul>
     )
@@ -38,19 +34,19 @@ class ListContainer extends Component {
 }
 
 
-ListContainer.propTypes = propTypes
-
-function mapStateToProps(state) {
-  return {
-    list: state.list.list,
-    quantity: state.list.quantity,
-    isFetching: state.list.isFetching,
-  }
+ListContainer.propTypes = {
+  getList: React.PropTypes.func.isRequired,
+  list: ImmutablePropTypes.list.isRequired,
+  quantity: React.PropTypes.number,
+  isFetching: React.PropTypes.bool,
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ListActions, dispatch)
-}
+const mapStateToProps = state => ({
+  list: state.getIn(['list', 'list']),
+  quantity: state.getIn(['list', 'quantity']),
+  isFetching: state.getIn(['list', 'isFetching']),
+})
 
+const mapDispatchToProps = dispatch => bindActionCreators(ListActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)

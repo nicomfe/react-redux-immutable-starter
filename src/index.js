@@ -1,7 +1,6 @@
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -14,13 +13,12 @@ import './assets/custom.less'
 require('babel-polyfill')
 
 const store = configureStore()
-const history = syncHistoryWithStore(browserHistory, store)
 
 const rootEl = document.getElementById('app')
 ReactDOM.render(
   <Provider store={store}>
     <AppContainer>
-      <App history={history} />
+      <App history={browserHistory} />
     </AppContainer>
   </Provider>,
   rootEl

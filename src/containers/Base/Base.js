@@ -1,10 +1,4 @@
-import React, { PropTypes } from 'react'
-
-
-const propTypes = {
-  children: PropTypes.element.isRequired,
-}
-
+import React from 'react'
 
 const BaseContainer = ({ children }) => (
   <div className="row">
@@ -12,7 +6,8 @@ const BaseContainer = ({ children }) => (
   </div>
 )
 
-
-BaseContainer.propTypes = propTypes
+BaseContainer.propTypes = {
+  children: React.PropTypes.element.isRequired,
+}
 
 export default BaseContainer

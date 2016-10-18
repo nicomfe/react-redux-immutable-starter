@@ -1,45 +1,45 @@
-/* eslint-disable react/jsx-first-prop-new-line */
 import { createStore, applyMiddleware, compose } from 'redux'
-/* eslint-enable global-require, react/jsx-first-prop-new-line */
-import { persistState } from 'redux-devtools'
 import thunk from 'redux-thunk'
-import { routerMiddleware } from 'react-router-redux'
+import { syncHistory } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import createLogger from 'redux-logger'
+import Immutable from 'immutable'
 
 import rootReducer from '../reducers'
 
-const reduxRouterMiddleware = routerMiddleware(browserHistory)
-const middleware = [
-  reduxRouterMiddleware,
-  thunk,
-  createLogger({
-    stateTransformer: state => state,
-    collapsed: () => true,
-  }),
-].filter(Boolean)
+const routerMiddleware = syncHistory(browserHistory)
 
-
-function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState, compose(
-    applyMiddleware(...middleware),
-    persistState(
-      window.location.href.match(
-        /[?&]debug_session=([^&]+)\b/
-      )
-    )
+function configureStore(initialState = {}) {
+  const store = createStore(
+    rootReducer,
+    Immutable.fromJS(initialState),
+    compose(
+      applyMiddleware(
+        thunk,
+        routerMiddleware,
+        createLogger({
+          stateTransformer: (state) => {
+            return state.toJS()
+          },
+          collapsed: () => {
+            return true
+          },
+        }),
+      ),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   )
 
   if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
-      /* eslint-disable global-require */
-      const nextReducer = require('../reducers').default
-      /* eslint-enable global-require */
-      store.replaceReducer(nextReducer)
+      const nextRootReducer = require('../reducers').default
+      store.replaceReducer(nextRootReducer)
     })
   }
+
+  routerMiddleware.listenForReplays(store, (state) => {
+    return state.getIn(['routing', 'location']).toJS()
+  })
 
   return store
 }

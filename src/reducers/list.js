@@ -1,31 +1,24 @@
-import { Record } from 'immutable'
+import Immutable from 'immutable'
+import { createReducer } from 'redux-immutablejs'
 
 import { GET_LIST, GET_LIST_START } from '../actions/list'
 
-/* eslint-disable new-cap */
-const InitialState = Record({
+const initialState = Immutable.fromJS({
   quantity: 0,
   isFetching: false,
   list: [],
 })
-/* eslint-enable new-cap */
-const initialState = new InitialState()
 
-
-export default function tables(state = initialState, action) {
-  switch (action.type) {
-    case GET_LIST_START:
-      return state.withMutations((ctx) => {
-        ctx.set('isFetching', true)
-            .set('quantity', action.quantity)
-      })
-    case GET_LIST:
-      return state.withMutations((ctx) => {
-        ctx.set('isFetching', false)
-            .set('quantity', action.quantity)
-            .set('list', action.list)
-      })
-    default:
-      return state
-  }
-}
+export default createReducer(initialState, {
+  [GET_LIST_START]: (state, action) => {
+    return state
+      .set('isFetching', true)
+      .set('quantity', action.quantity)
+  },
+  [GET_LIST]: (state, action) => {
+    return state
+      .set('isFetching', false)
+      .set('quantity', action.quantity)
+      .set('list', Immutable.fromJS(action.list))
+  },
+})

@@ -1,10 +1,5 @@
 import React from 'react'
 
-
-const propTypes = {
-}
-
-
 const ListLoader = props => (
   <div {...props} className="timeline-wrapper list-group-item">
     <div className="timeline-item">
@@ -20,6 +15,6 @@ const ListLoader = props => (
   </div>
 )
 
-ListLoader.propTypes = propTypes
+ListLoader.propTypes = {}
 
 export default ListLoader
