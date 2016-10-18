@@ -1,29 +1,29 @@
-import React, { Component, PropTypes } from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import React, { Component, PropTypes } from 'react'
+import { Field, reduxForm, SubmissionError } from 'redux-form'
 import {
   createValidator,
   composeValidators,
   combineValidators,
-  isRequired
-} from 'revalidate';
+  isRequired,
+} from 'revalidate'
 
 const isValidEmail = createValidator(
   message => (value) => {
     if (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      return message;
+      return message
     }
-    return null;
+    return null
   },
   'Invalid email address'
-);
+)
 
 const validate = combineValidators({
   email: composeValidators(
     isRequired({ message: 'Required' }),
     isValidEmail
   )(),
-  password: isRequired({ message: 'Required' })
-});
+  password: isRequired({ message: 'Required' }),
+})
 
 
 /* eslint-disable react/prop-types */
@@ -41,18 +41,18 @@ const renderField = ({ input, label, placeholder, type, name, meta: { touched, e
       {...input}
     />
   </div>
-);
+)
 /* eslint-enable react/prop-types */
 
 const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
-  pristine: PropTypes.bool.isRequired
-};
+  pristine: PropTypes.bool.isRequired,
+}
 
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 class FormContainer extends Component {
   /* eslint-disable no-unused-vars */
@@ -60,8 +60,8 @@ class FormContainer extends Component {
   /* eslint-enable no-unused-vars */
     return sleep(1000) // simulate server latency
       .then(() => {
-        throw new SubmissionError({ email: 'User already exist', _error: 'Form failed!' });
-      });
+        throw new SubmissionError({ email: 'User already exist', _error: 'Form failed!' })
+      })
       /* In production here we will use fetch.js
       return fetch('/url',
         { method: 'POST',
@@ -76,18 +76,18 @@ class FormContainer extends Component {
         )
         .then(json => {
           if (json.status === 'success') {
-            console.log('Success!');
-            dispatch({ action: 'Action',});
+            console.log('Success!')
+            dispatch({ action: 'Action',})
           }
           throw new SubmissionError({
             email: json.message, _error: 'Auth failed!' }
-          );
-        });
+          )
+        })
       */
   }
 
   render() {
-    const { handleSubmit, pristine, submitting, reset } = this.props;
+    const { handleSubmit, pristine, submitting, reset } = this.props
 
     return (
       <div>
@@ -123,14 +123,14 @@ class FormContainer extends Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
 
-FormContainer.propTypes = propTypes;
+FormContainer.propTypes = propTypes
 
 export default reduxForm({
   form: 'FormContainer',
-  validate
-})(FormContainer);
+  validate,
+})(FormContainer)

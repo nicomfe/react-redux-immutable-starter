@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
-import { urls } from '../../routes';
+import { urls } from '../../routes'
 
 
 const propTypes = {
-};
+}
 
 const IndexContainer = () => (
   <div className="list-group" style={{ textAlign: 'center' }}>
@@ -18,8 +18,8 @@ const IndexContainer = () => (
       <p className="list-group-item-text">Form example</p>
     </Link>
   </div>
-);
+)
 
-IndexContainer.propTypes = propTypes;
+IndexContainer.propTypes = propTypes
 
-export default IndexContainer;
+export default IndexContainer

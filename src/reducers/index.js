@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 import {
-  routerReducer
-} from 'react-router-redux';
+  routerReducer,
+} from 'react-router-redux'
 
-import list from './list';
+import list from './list'
 
 
 const rootReducer = combineReducers({
   routing: routerReducer,
   form: formReducer,
-  list
-});
+  list,
+})
 
-export default rootReducer;
+export default rootReducer

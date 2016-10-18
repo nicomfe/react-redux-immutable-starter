@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 
 const propTypes = {
-};
+}
 
 
 const ListLoader = props => (
@@ -18,8 +18,8 @@ const ListLoader = props => (
       </div>
     </div>
   </div>
-);
+)
 
-ListLoader.propTypes = propTypes;
+ListLoader.propTypes = propTypes
 
-export default ListLoader;
+export default ListLoader
