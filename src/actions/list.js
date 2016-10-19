@@ -1,23 +1,20 @@
-import faker from 'faker'
+export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST'
+export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS'
 
-export const GET_LIST_START = 'GET_LIST_START'
-export const GET_LIST = 'GET_LIST'
-
-
-export function getList(quantity) {
-  return (dispatch) => {
-    dispatch({ type: GET_LIST_START, quantity })
+export const addItem = item => {
+  return dispatch => {
+    dispatch(addItemRequest(item))
     setTimeout(() => {
-      const list = []
-      for (let i = 0; i < quantity; i += 1) {
-        list.push({
-          id: i,
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-        })
-      }
-      dispatch({ type: GET_LIST, quantity, list, isFetching: true })
+      // 2 seconds later we dispatch add item success
+      dispatch(addItemSuccess())
     }, 2000)
-    dispatch({ type: GET_LIST_START, quantity, isFetching: false })
   }
 }
+export const addItemRequest = item => ({
+  type: ADD_ITEM_REQUEST,
+  payload: { ...item },
+})
+
+export const addItemSuccess = () => ({
+  type: ADD_ITEM_SUCCESS,
+})

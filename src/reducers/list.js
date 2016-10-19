@@ -1,24 +1,31 @@
 import Immutable from 'immutable'
 import { createReducer } from 'redux-immutablejs'
 
-import { GET_LIST, GET_LIST_START } from '../actions/list'
+import { ADD_ITEM_REQUEST, ADD_ITEM_SUCCESS } from '../actions/list'
 
 const initialState = Immutable.fromJS({
-  quantity: 0,
-  isFetching: false,
-  list: [],
+  quantity: 1,
+  list: [{
+    id: 0,
+    firstName: 'Jose',
+    lastName: 'Perez',
+  }],
+  isSaving: false,
 })
 
 export default createReducer(initialState, {
-  [GET_LIST_START]: (state, action) => {
+  [ADD_ITEM_REQUEST]: (state, action) => {
+    const newItem = Immutable.fromJS({
+      id: state.get('quantity'),
+      firstName: action.payload.firstName,
+      lastName: action.payload.lastName,
+    })
     return state
-      .set('isFetching', true)
-      .set('quantity', action.quantity)
+      .set('list', state.get('list').push(newItem))
+      .set('quantity', state.get('quantity') + 1)
+      .set('isSaving', true)
   },
-  [GET_LIST]: (state, action) => {
-    return state
-      .set('isFetching', false)
-      .set('quantity', action.quantity)
-      .set('list', Immutable.fromJS(action.list))
+  [ADD_ITEM_SUCCESS]: (state) => {
+    return state.set('isSaving', false)
   },
 })
