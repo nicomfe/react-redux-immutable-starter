@@ -4,7 +4,6 @@ import { UPDATE_LOCATION } from 'react-router-redux'
 import Immutable from 'immutable'
 
 import list from './list'
-import auth from '../redux/auth/reducers'
 
 const initialState = Immutable.fromJS({
   location: undefined,
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   routing: immutableRouting,
   form,
   list,
-  auth,
 })
 
 export default rootReducer

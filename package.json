@@ -9,7 +9,6 @@
     "build:demo": "webpack -p --progress --colors --config demo/webpack.prod.demo.js"
   },
   "dependencies": {
-    "firebase": "3.5.0",
     "immutable": "3.8.1",
     "react": "15.3.2",
     "react-dom": "15.3.2",
@@ -20,8 +19,7 @@
     "redux": "3.6.0",
     "redux-form": "6.1.0",
     "redux-immutablejs": "0.0.8",
-    "redux-logger": "2.7.0",
-    "reselect": "2.5.4"
+    "redux-logger": "2.7.0"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
