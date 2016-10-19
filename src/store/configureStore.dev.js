@@ -30,7 +30,7 @@ function configureStore(initialState = {}) {
     )
   )
 
-  if (module.hot) {
+  if (process.env.NODE_ENV !== 'production' && module.hot) {
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('../reducers').default
       store.replaceReducer(nextRootReducer)
