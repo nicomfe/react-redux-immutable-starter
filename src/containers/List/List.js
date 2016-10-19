@@ -7,12 +7,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import * as ListActions from '../../actions/list'
 import ListLoader from '../../components/ListLoader/ListLoader'
 import ItemForm from '../../components/ItemForm/ItemForm'
+import ListItem from '../../components/ListItem/ListItem'
 
 class ListContainer extends React.Component {
-  componentWillMount() {
-    // const { getList } = this.props
-    // getList(10)
-  }
 
   handleAddItem = () => {
     const { addItem, itemForm } = this.props
@@ -35,18 +32,13 @@ class ListContainer extends React.Component {
         {isSaving
           ? this.showLoading()
           :
-          list.map(item =>
-            <li key={item.get('id')} className="list-group-item">
-              {item.get('firstName')} {item.get('lastName')}
-            </li>
-          )
+          list.map(item => <ListItem item={item} />)
         }
         </ul>
       </div>
     )
   }
 }
-
 
 ListContainer.propTypes = {
   getList: React.PropTypes.func.isRequired,

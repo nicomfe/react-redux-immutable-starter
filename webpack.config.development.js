@@ -30,8 +30,13 @@ module.exports = {
       include: path.join(__dirname, 'src'),
     },
     {
-      test: /\.less$/,
-      loaders: ['style', 'css', 'less'],
+      test: /(\.scss|\.css)$/,
+      loaders: [
+        'style',
+        'css?modules&sourceMap&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:5]',
+        'postcss',
+        'sass',
+      ],
     },
     {
       test: /\.(jpg|jpeg|gif|png|ico|ttf|otf|eot|svg|woff|woff2)(\?[a-z0-9]+)?$/,

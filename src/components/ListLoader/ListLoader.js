@@ -1,15 +1,17 @@
 import React from 'react'
 
+import styles from './ListLoader.scss'
+
 const ListLoader = props => (
-  <div {...props} className="timeline-wrapper list-group-item">
-    <div className="timeline-item">
-      <div className="animated-background">
-        <div className="background-masker header-top" />
-        <div className="background-masker header-left" />
-        <div className="background-masker header-right" />
-        <div className="background-masker header-bottom" />
-        <div className="background-masker subheader-left" />
-        <div className="background-masker subheader-right" />
+  <div {...props}>
+    <div className={styles.timelineItem}>
+      <div className={styles.animatedbackground}>
+        <div className={`${styles.backgroundMasker} ${styles.headerTop}`} />
+        <div className={`${styles.backgroundMasker} ${styles.headerLeft}`} />
+        <div className={`${styles.backgroundMasker} ${styles.headerRight}`} />
+        <div className={`${styles.backgroundMasker} ${styles.headerBottom}`} />
+        <div className={`${styles.backgroundMasker} ${styles.subheaderLeft}`} />
+        <div className={`${styles.backgroundMasker} ${styles.subheaderRight}`} />
       </div>
     </div>
   </div>
