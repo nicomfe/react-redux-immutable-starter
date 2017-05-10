@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { reduxForm, Field } from 'redux-form/immutable'
 
 import styles from './ItemForm.scss'
@@ -11,7 +12,7 @@ class ItemForm extends React.Component {
     reset()
   }
 
-  renderInputField = field => {
+  renderInputField = (field) => {
     return <input {...field} {...field.input} />
   }
 
@@ -23,7 +24,6 @@ class ItemForm extends React.Component {
         maxLength={100}
         name="firstName"
         placeholder="First Name"
-        tabIndex="1"
         type="text"
       />
       <Field
@@ -31,7 +31,6 @@ class ItemForm extends React.Component {
         maxLength={100}
         name="lastName"
         placeholder="Last Name"
-        tabIndex="2"
         type="text"
       />
       <button type="button" onClick={this.handleSubmit}>Add</button>
@@ -40,8 +39,8 @@ class ItemForm extends React.Component {
 }
 
 ItemForm.propTypes = {
-  handleSubmit: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
 }
 
 export default reduxForm({

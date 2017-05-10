@@ -5,13 +5,14 @@
   "description": "Boilerplate for react redux project",
   "scripts": {
     "lint": "eslint ./src/",
-    "start": "node server.js",
-    "build:demo": "webpack -p --progress --colors --config demo/webpack.prod.demo.js"
+    "start": "npm run lint && node server.js",
+    "build:demo": "npm run lint && webpack -p --progress --colors --config demo/webpack.prod.demo.js"
   },
   "dependencies": {
     "immutable": "3.8.1",
-    "react": "15.3.2",
-    "react-dom": "15.3.2",
+    "prop-types": "15.5.9",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
     "react-immutable-proptypes": "2.1.0",
     "react-redux": "4.4.5",
     "react-router": "2.8.1",
@@ -19,7 +20,8 @@
     "redux": "3.6.0",
     "redux-form": "6.1.0",
     "redux-immutablejs": "0.0.8",
-    "redux-logger": "2.7.0"
+    "redux-logger": "2.7.0",
+    "redux-thunk": "2.1.0"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
@@ -51,7 +53,6 @@
     "redux-devtools": "3.3.1",
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.0.11",
-    "redux-thunk": "2.1.0",
     "sass-loader": "4.0.2",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",

@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import styles from './ListItem.scss'
 
-const ListItem = props => {
+const ListItem = (props) => {
   const { item } = props
   if (!item) return null
   return (

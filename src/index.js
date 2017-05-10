@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { browserHistory } from 'react-router'

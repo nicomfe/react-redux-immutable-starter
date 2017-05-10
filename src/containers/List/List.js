@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getFormValues } from 'redux-form/immutable'
@@ -29,11 +30,11 @@ class ListContainer extends React.Component {
       <div>
         <ItemForm handleSubmit={this.handleAddItem} />
         <ul className="list-group" style={{ textAlign: 'center' }}>
-        {isSaving
-          ? this.showLoading()
-          :
-          list.map(item => <ListItem item={item} />)
-        }
+          {isSaving
+            ? this.showLoading()
+            :
+            list.map(item => <ListItem item={item} />)
+          }
         </ul>
       </div>
     )
@@ -41,11 +42,10 @@ class ListContainer extends React.Component {
 }
 
 ListContainer.propTypes = {
-  getList: React.PropTypes.func.isRequired,
   list: ImmutablePropTypes.list,
-  quantity: React.PropTypes.number,
-  isSaving: React.PropTypes.bool,
-  addItem: React.PropTypes.func.isRequired,
+  quantity: PropTypes.number,
+  isSaving: PropTypes.bool,
+  addItem: PropTypes.func.isRequired,
   itemForm: ImmutablePropTypes.map,
 }
 

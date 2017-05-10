@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const cssnano = require('cssnano')
 
 module.exports = {
   entry: [
@@ -31,6 +32,20 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+  ],
+  postcss: [
+    cssnano({
+      sourcemap: true,
+      autoprefixer: {
+        add: true,
+        remove: true,
+        browsers: ['last 2 versions'],
+      },
+      safe: true,
+      discardComments: {
+        removeAll: true,
       },
     }),
   ],

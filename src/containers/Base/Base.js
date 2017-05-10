@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const BaseContainer = ({ children }) => (
   <div className="row">
@@ -7,7 +8,7 @@ const BaseContainer = ({ children }) => (
 )
 
 BaseContainer.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
 }
 
 export default BaseContainer

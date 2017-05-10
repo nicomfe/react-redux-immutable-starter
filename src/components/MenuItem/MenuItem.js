@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
 import styles from './MenuItem.scss'
 
-const MenuItem = props => {
+const MenuItem = (props) => {
   const { to, title, description } = props
   return (
     <Link to={to} className={styles.listGroupItem}>
@@ -14,9 +15,9 @@ const MenuItem = props => {
 }
 
 MenuItem.propTypes = {
-  to: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 }
 
 export default MenuItem
