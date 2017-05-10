@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const cssnano = require('cssnano')
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -48,4 +49,18 @@ module.exports = {
     tls: 'empty',
     dns: 'empty',
   },
+  postcss: [
+    cssnano({
+      sourcemap: true,
+      autoprefixer: {
+        add: true,
+        remove: true,
+        browsers: ['last 2 versions'],
+      },
+      safe: true,
+      discardComments: {
+        removeAll: true,
+      },
+    }),
+  ],
 }

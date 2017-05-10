@@ -6,6 +6,14 @@ const config = require('./webpack.config.development')
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
+  lazy: false,
+  noInfo: false,
+  quiet: false,
+  stats: {
+    chunks: false,
+    chunkModules: false,
+    colors: true,
+  },
   historyApiFallback: true,
 }).listen(3000, 'localhost', (err, result) => {
   if (err) {
