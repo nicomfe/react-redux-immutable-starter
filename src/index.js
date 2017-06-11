@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-import { browserHistory } from 'react-router'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -16,7 +15,7 @@ const rootEl = document.getElementById('app')
 ReactDOM.render(
   <Provider store={store}>
     <AppContainer>
-      <App history={browserHistory} />
+      <App />
     </AppContainer>
   </Provider>,
   rootEl
@@ -32,7 +31,7 @@ if (module.hot) {
     ReactDOM.render(
       <Provider store={store}>
         <AppContainer>
-          <NextApp history={history} />
+          <NextApp />
         </AppContainer>
       </Provider>,
       rootEl
